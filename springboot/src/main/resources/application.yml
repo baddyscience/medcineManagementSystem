@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${ip}:3306/medicine
+    username: root
+    password:
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+
+server:
+  port: 5000
+
+ip: localhost
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 打印 SQL 日志到控制台
+
+
+
