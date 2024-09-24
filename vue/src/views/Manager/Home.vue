@@ -3,7 +3,7 @@
 <template>
   <div>
     <div style="margin-right: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); padding: 10px 20px; border-radius: 5px; margin-bottom: 10px">
-      审计系统登录成功！
+      医药系统登录成功！
     </div>
 
       <div style="display: flex">

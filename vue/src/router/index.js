@@ -27,25 +27,10 @@ const routes = [
         children: [
             {path: 'home', name: 'Home', meta: {title: '首页'}, component: () => import('../views/Manager/Home.vue')},
             {
-                path: 'approvalForm',
-                name: 'ApprovalForm',
-                component: () => import('../views/ApprovalForm.vue'),
-                meta: {title: '预约审批表'},
-                children: [
-                    {path: 'projectManager', name: 'ProjectManager', meta: {title: 'ProjectManager'}, component: () => import('../views/Manager/ProjectManeger.vue')},
-                ]
-            },
-            {
                 path: 'person',
                 name: 'Person',
                 meta: {title: '个人信息'},
                 component: () => import('../views/Manager/Person.vue')
-            },
-            {
-                path: 'approvalTable',
-                name: 'ApprovalTable',
-                component: () => import('../views/ApprovalTable.vue'),
-                meta: {title: '填报材料'}
             },
             {path: '403', name: 'Auth', meta: {title: '无权限'}, component: () => import('../views/Manager/Auth.vue')},
             {
@@ -53,24 +38,6 @@ const routes = [
                 name: 'password',
                 meta: {title: '修改密码'},
                 component: () => import('../views/Manager/Password.vue')
-            },
-            {
-                path: 'adminHistory',
-                name: 'AdminHistory',
-                meta: {title: '管理员的页面'},
-                component: () => import('../views/Manager/adminHistory.vue'),
-                children: [
-                    {path: 'test', name: 'Test', meta: {title: 'Test'}, component: () => import('../views/Test.vue')},
-                ]
-            },
-            {
-                path: 'userHistory',
-                name: 'UserHistory',
-                meta: {title: '用户历史记录'},
-                component: () => import('../views/Manager/userHistory.vue'),
-                children: [
-                    {path: 'test', name: 'Test', meta: {title: 'Test'}, component: () => import('../views/Test.vue')},
-                ]
             },
             {
                 path: 'change',

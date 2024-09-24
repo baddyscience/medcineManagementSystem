@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @TableName("client")  // 表名
-public class client {
+public class Client {
 
     @TableId(type = IdType.AUTO)
     public String cno;//编号
