@@ -12,7 +12,7 @@ const request = axios.create({
 // 比如统一加token，对请求参数统一加密
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
-    // let user = localStorage.getItem("wxd-user") ? JSON.parse(localStorage.getItem("wxd-user")) : null
+    // let user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null
     let user = JSON.parse(localStorage.getItem("localStorageUser") || '{}')
     console.log(user.token)
     config.headers['token'] = user.token  // 设置请求头
@@ -33,7 +33,7 @@ request.interceptors.response.use(
         if (typeof res === 'string') {
             res = res ? JSON.parse(res) : res
         }
-        if (res.code == 401) {
+        if (res.code === 401) {
             router.push('/login')
         }
 

@@ -9,6 +9,7 @@ import com.medicine.springboot.mapper.MedicineMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class MedicineService extends ServiceImpl<MedicineMapper, Medicine> {
@@ -25,5 +26,17 @@ public class MedicineService extends ServiceImpl<MedicineMapper, Medicine> {
 
     public Medicine getByMno(Integer mno) {
         return getMedicine(mno);
+    }
+
+    public List<Medicine> findAll() {
+        return medicineMapper.selectList(null);
+    }
+
+    public Medicine update(Medicine medicine) {
+        return medicineMapper.updateById(medicine) > 0 ? medicine : null;
+    }
+
+    public void delete(String mno) {
+        medicineMapper.deleteById(mno);
     }
 }
