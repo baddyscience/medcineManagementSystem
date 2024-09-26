@@ -1,10 +1,15 @@
 package com.medicine.springboot.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.medicine.springboot.common.AuthAccess;
+import com.medicine.springboot.common.Result;
 import com.medicine.springboot.entity.Medicine;
+import com.medicine.springboot.entity.User;
 import com.medicine.springboot.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @CrossOrigin
@@ -21,9 +26,15 @@ public class MedicineController {
         return medicineService.getByMno(mno);
     }
 
+//    @GetMapping("/find")
+//    public List<Medicine> getAllMedicines() {
+//        return medicineService.findAll();
+//    }
+
     @GetMapping("/find")
-    public List<Medicine> getAllMedicines() {
-        return medicineService.findAll();
+    public Result getAllUser() throws SQLException {
+        List<Medicine> medicines = medicineService.list(new QueryWrapper<Medicine>().orderByDesc("mno"));
+        return Result.success(medicines);
     }
 
     @PostMapping("/save")
@@ -32,7 +43,7 @@ public class MedicineController {
     }
 
     @PutMapping("/update/{mno}")
-    public Medicine updateMedicine(@PathVariable String mno, @RequestBody Medicine medicine) {
+    public Medicine updateMedicine(@PathVariable Integer mno, @RequestBody Medicine medicine) {
         medicine.setMno(mno);
         return medicineService.update(medicine);
     }

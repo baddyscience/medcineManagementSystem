@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.medicine.springboot.entity.Agency;
 import com.medicine.springboot.entity.Medicine;
+import com.medicine.springboot.entity.User;
 import com.medicine.springboot.mapper.AgencyMapper;
 import com.medicine.springboot.mapper.MedicineMapper;
 import org.springframework.stereotype.Service;
@@ -39,4 +40,6 @@ public class MedicineService extends ServiceImpl<MedicineMapper, Medicine> {
     public void delete(String mno) {
         medicineMapper.deleteById(mno);
     }
+
+
 }

@@ -21,7 +21,7 @@
           <el-form-item label="药品名称" prop="mname">
             <el-input v-model="currentMedicine.mname" required></el-input>
           </el-form-item>
-          <el-form-item label="药品规格" prop="mmode">
+          <el-form-item label="服用方法" prop="mmode">
             <el-input v-model="currentMedicine.mmode" required></el-input>
           </el-form-item>
           <el-form-item label="药品功效" prop="mefficacy">

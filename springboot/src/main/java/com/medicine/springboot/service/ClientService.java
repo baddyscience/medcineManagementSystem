@@ -11,6 +11,7 @@ import com.medicine.springboot.mapper.ClientMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ClientService extends ServiceImpl<ClientMapper, Client> {
@@ -28,5 +29,10 @@ public class ClientService extends ServiceImpl<ClientMapper, Client> {
     public Client getByCno(Integer cno) {
         return getClient(cno);
     }
+
+    public List<Client> findAll() {
+        return clientMapper.selectList(Wrappers.<Client>lambdaQuery());
+    }
+
 
 }

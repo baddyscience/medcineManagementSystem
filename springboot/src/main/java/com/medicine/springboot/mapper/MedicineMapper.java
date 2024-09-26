@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.medicine.springboot.entity.Medicine;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 public interface MedicineMapper extends BaseMapper<Medicine> {
 
     @Select("select * from `medicine` where mno = #{mno}")
