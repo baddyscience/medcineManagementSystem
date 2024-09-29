@@ -49,7 +49,20 @@ public class MedicineController {
     }
 
     @DeleteMapping("/delete/{mno}")
-    public void deleteMedicine(@PathVariable String mno) {
+    public void deleteMedicine(@PathVariable Integer mno) {
         medicineService.delete(mno);
+    }
+
+    @PutMapping("/reorder")
+    public Result reorderMedicines(@RequestBody List<Medicine> medicines) throws SQLException {
+        // 遍历药品列表并更新药品编号
+        for (int i = 0; i < medicines.size(); i++) {
+            Medicine medicine = medicines.get(i);
+            // 设置新的药品编号，假设从 1 开始
+            medicine.setMno(i + 1);
+            // 更新药品信息
+            medicineService.updateById(medicine);
+        }
+        return Result.success("药品编号重新排序成功");
     }
 }

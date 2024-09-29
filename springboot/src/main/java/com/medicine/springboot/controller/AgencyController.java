@@ -1,12 +1,15 @@
 package com.medicine.springboot.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.medicine.springboot.common.Result;
+import com.medicine.springboot.entity.Agency;
 import com.medicine.springboot.service.AgencyService;
-import com.medicine.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -21,6 +24,38 @@ public class AgencyController {
     {
         return agencyService.getByAno(ano);
     }
+    @GetMapping("/find")
+    public Result getAllUser() throws SQLException {
+        List<Agency> agencys = agencyService.list(new QueryWrapper<Agency>().orderByDesc("ano"));
+        return Result.success(agencys);
+    }
 
+    @PostMapping("/save")
+    public boolean addagency(@RequestBody Agency agency) {
+        return agencyService.save(agency);
+    }
 
+    @PutMapping("/update/{ano}")
+    public Agency updateagency(@PathVariable Integer ano, @RequestBody Agency agency) {
+        agency.setAno(ano);
+        return agencyService.update(agency);
+    }
+
+    @DeleteMapping("/delete/{ano}")
+    public void deleteagency(@PathVariable Integer ano) {
+        agencyService.delete(ano);
+    }
+
+    @PutMapping("/reorder")
+    public Result reorderagencys(@RequestBody List<Agency> agencys) throws SQLException {
+        // 遍历药品列表并更新药品编号
+        for (int i = 0; i < agencys.size(); i++) {
+            Agency agency = agencys.get(i);
+            // 设置新的药品编号，假设从 1 开始
+            agency.setAno(i + 1);
+            // 更新药品信息
+            agencyService.updateById(agency);
+        }
+        return Result.success("经办人编号重新排序成功");
+    }
 }

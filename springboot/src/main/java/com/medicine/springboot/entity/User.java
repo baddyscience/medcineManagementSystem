@@ -10,6 +10,8 @@ import lombok.*;
 @Data
 @TableName("user")
 public class User {
+
+    @Setter
     @TableId(type = IdType.AUTO)
     private Integer id;
 

@@ -37,7 +37,7 @@ public class MedicineService extends ServiceImpl<MedicineMapper, Medicine> {
         return medicineMapper.updateById(medicine) > 0 ? medicine : null;
     }
 
-    public void delete(String mno) {
+    public void delete(Integer mno) {
         medicineMapper.deleteById(mno);
     }
 
