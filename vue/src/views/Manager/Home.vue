@@ -1,9 +1,5 @@
 <template>
   <el-container>
-    <!-- 顶部导航栏 -->
-
-
-    <!-- 主内容区域 -->
     <el-main>
       <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
         <!-- 库存警报 -->

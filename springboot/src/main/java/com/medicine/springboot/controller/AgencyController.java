@@ -6,6 +6,7 @@ import com.medicine.springboot.common.Result;
 import com.medicine.springboot.entity.Agency;
 import com.medicine.springboot.service.AgencyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class AgencyController {
     }
 
     @PostMapping("/save")
-    public boolean addagency(@RequestBody Agency agency) {
+    public boolean addAgency(@RequestBody Agency agency) {
         return agencyService.save(agency);
     }
 
@@ -44,6 +45,15 @@ public class AgencyController {
     @DeleteMapping("/delete/{ano}")
     public void deleteagency(@PathVariable Integer ano) {
         agencyService.delete(ano);
+    }
+
+    @DeleteMapping("/deleteBatch")
+    public ResponseEntity<?> deleteBatch(@RequestBody List<Integer> anos) {
+        // 批量删除逻辑
+        for (Integer ano : anos) {
+            // 执行单个删除操作
+        }
+        return ResponseEntity.ok("批量删除成功");
     }
 
     @PutMapping("/reorder")

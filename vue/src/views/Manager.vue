@@ -9,12 +9,12 @@
         <el-menu mode="horizontal" background-color="#004080" text-color="white" active-text-color="#1affff">
         <el-menu-item index="/home" @click.native="home">系统首页</el-menu-item>
           <el-menu-item index="/medicine" @click.native="handleMedicine">药品管理</el-menu-item>
-          <el-menu-item index="3">经办人管理</el-menu-item>
-          <el-menu-item index="5">顾客管理</el-menu-item>
+          <el-menu-item index="/agency" @click.native="handleAgency">经办管理</el-menu-item>
+          <el-menu-item index="/client" @click.native="handleClient">顾客管理</el-menu-item>
       </el-menu>
 
       <el-dropdown trigger="click">
-        <el-button style="color: white;">{{ localStorageUser.username }}</el-button>
+        <el-button style="color: black;">{{ localStorageUser.username }}</el-button>
         <el-dropdown-menu slot="dropdown">
             <el-dropdown-item index="/login" @click.native="handlePersonal">个人信息</el-dropdown-item>
             <el-dropdown-item index="/login" @click.native="handlePassword">修改密码</el-dropdown-item>
@@ -76,6 +76,12 @@ export default {
     },
     handleMedicine() {
       router.push("/medicine");
+    },
+    handleAgency() {
+      router.push("/agency");
+    },
+    handleClient() {
+      router.push("/client");
     }
   }
 }

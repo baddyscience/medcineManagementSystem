@@ -29,6 +29,8 @@ const routes = [
             {path: '403', name: 'Auth', meta: {title: '无权限'}, component: () => import('../views/Manager/Auth.vue')},
             {path: 'password', name: 'password', meta: {title: '修改密码'}, component: () => import('../views/Manager/Password.vue')},
             {path: 'medicine', name: 'medicine', meta: {title: '药品管理'}, component: () => import('../views/Manager/Medicine.vue')},
+            {path: 'agency', name: 'agency', meta: {title: '代理商管理'}, component: () => import('../views/Manager/Agency.vue')},
+            {path: 'client', name: 'client', meta: {title: '客户管理'}, component: () => import('../views/Manager/Client.vue')}
 
         ]
 

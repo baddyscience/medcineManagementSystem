@@ -4,7 +4,7 @@
       <el-button type="primary" @click="dialogVisible = true" style="margin-bottom: 20px;">添加药品</el-button>
       <el-button @click="reorderMedicines" style="margin-bottom: 20px; margin-left: 10px;">重新排序</el-button> <!-- 添加重新排序按钮 -->
       <el-table :data="medicines" style="width: 100%; height: calc(100vh - 200px); margin-top: 20px;" stripe>
-        <el-table-column prop="mno" label="编号" width="100" sortable></el-table-column>
+        <el-table-column prop="mno" label="药品编号" width="100" sortable></el-table-column>
         <el-table-column prop="mname" label="药品名称" width="300"></el-table-column>
         <el-table-column label="服用方法" width="150">
           <template slot-scope="scope">
@@ -12,7 +12,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="mefficacy" label="药品功效" width="750"></el-table-column>
-        <el-table-column label="操作" width="200" fixed="right">
+        <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <el-button @click="editMedicine(scope.row)" type="text" size="small">编辑</el-button>
             <el-button @click="deleteMedicine(scope.row.mno)" type="text" size="small" style="color: red;">删除</el-button>

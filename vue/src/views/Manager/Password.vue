@@ -1,11 +1,11 @@
 
 
 <template>
-  <el-card>
-    <div slot="header">
+  <el-card class="user-card">
+    <div slot="header" class="card-header">
       <span>修改密码</span>
     </div>
-    <el-form ref="form" :model="form" label-width="80px" :rules="rules">
+    <el-form label-width="100px" :model="form" ref="userForm" class="form-container">
       <el-form-item label="旧密码" prop="oldPassword">
         <el-input v-model="form.oldPassword" show-password></el-input>
       </el-form-item>
@@ -16,12 +16,61 @@
         <el-input v-model="form.confirmPassword" show-password></el-input>
       </el-form-item>
     </el-form>
-    <div><el-button type="primary" @click="updateUser">修改密码</el-button></div>
+    <div class="form-footer">
+      <el-button type="primary" @click="updateUser">修改密码</el-button></div>
   </el-card>
 </template>
 
 <style scoped>
+.user-card {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f9fc;
+  border: 1px solid #dcdfe6;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
 
+.card-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #409eff;
+  text-align: center;
+}
+
+.form-container {
+  margin-top: 20px;
+}
+
+.el-form-item__label {
+  font-size: 18px;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.el-input {
+  border-radius: 4px;
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.el-button {
+  background-color: #409eff;
+  border-color: #409eff;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 16px;
+}
+
+.el-button:hover {
+  background-color: #66b1ff;
+  border-color: #66b1ff;
+}
 </style>
 
 <script>
