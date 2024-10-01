@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -51,9 +53,14 @@ public class AgencyController {
     public ResponseEntity<?> deleteBatch(@RequestBody List<Integer> anos) {
         // 批量删除逻辑
         for (Integer ano : anos) {
-            // 执行单个删除操作
+            agencyService.delete(ano);// 执行单个删除操作
         }
-        return ResponseEntity.ok("批量删除成功");
+        // 创建响应的 JSON 对象
+        Map<String, String> response = new HashMap<>();
+        response.put("code", "200");
+        response.put("message", "批量删除成功");
+
+        return ResponseEntity.ok(response); // 返回标准的 JSON 响应
     }
 
     @PutMapping("/reorder")
