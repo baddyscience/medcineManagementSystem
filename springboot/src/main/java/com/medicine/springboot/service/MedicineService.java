@@ -41,5 +41,7 @@ public class MedicineService extends ServiceImpl<MedicineMapper, Medicine> {
         medicineMapper.deleteById(mno);
     }
 
-
+    public List<Medicine> searchMedicines(String mno, String mname, String mmode, String mefficacy) {
+        return java.util.Collections.emptyList();
+    }
 }

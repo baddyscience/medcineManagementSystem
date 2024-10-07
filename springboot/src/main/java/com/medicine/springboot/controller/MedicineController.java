@@ -5,6 +5,7 @@ import com.medicine.springboot.common.AuthAccess;
 import com.medicine.springboot.common.Result;
 import com.medicine.springboot.entity.Medicine;
 import com.medicine.springboot.entity.User;
+import com.medicine.springboot.mapper.MedicineMapper;
 import com.medicine.springboot.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +24,12 @@ public class MedicineController {
     @Autowired
     MedicineService medicineService;
 
+
     @RequestMapping("/getByMno")
     public Object getByMno(Integer mno)
     {
         return medicineService.getByMno(mno);
     }
-
-//    @GetMapping("/find")
-//    public List<Medicine> getAllMedicines() {
-//        return medicineService.findAll();
-//    }
 
     @GetMapping("/find")
     public Result getAllUser() throws SQLException {
@@ -81,5 +78,35 @@ public class MedicineController {
             medicineService.updateById(medicine);
         }
         return Result.success("药品编号重新排序成功");
+    }
+
+    @GetMapping("/search")
+    public Result searchMedicines(
+            @RequestParam(required = false) String mno,
+            @RequestParam(required = false) String mname,
+            @RequestParam(required = false) String mmode,
+            @RequestParam(required = false) String mefficacy) throws SQLException {
+
+        QueryWrapper<Medicine> queryWrapper = new QueryWrapper<>();
+
+        // 根据传入的参数添加查询条件
+        if (mno != null && !mno.isEmpty()) {
+            queryWrapper.eq("mno", mno);
+        }
+        if (mname != null && !mname.isEmpty()) {
+            queryWrapper.like("mname", mname); // 使用like匹配名称
+        }
+        if (mmode != null && !mmode.isEmpty()) {
+            queryWrapper.eq("mmode", mmode);
+        }
+        if (mefficacy != null && !mefficacy.isEmpty()) {
+            queryWrapper.like("mefficacy", mefficacy); // 使用like匹配功效
+        }
+
+        // 根据构建的条件查询药品
+        List<Medicine> medicines = medicineService.list(queryWrapper);
+
+        // 返回结果
+        return Result.success(medicines);
     }
 }

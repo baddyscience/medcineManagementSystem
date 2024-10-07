@@ -3,15 +3,15 @@
 
  Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 80039
+ Source Server Version : 80025
  Source Host           : localhost:3306
  Source Schema         : medicine
 
  Target Server Type    : MySQL
- Target Server Version : 80039
+ Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 24/09/2024 17:39:56
+ Date: 07/10/2024 17:02:50
 */
 
 SET NAMES utf8mb4;
@@ -23,12 +23,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `agency`;
 CREATE TABLE `agency`  (
   `ano` int(0) NOT NULL AUTO_INCREMENT,
-  `aname` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `asex` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `aphone` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `aremark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
+  `aname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `asex` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `aphone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `aremark` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   PRIMARY KEY (`ano`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of agency
+-- ----------------------------
+INSERT INTO `agency` VALUES (1, '启明星', '女', '11122223333', '');
+INSERT INTO `agency` VALUES (2, '龚田', '女', '10089', '龚钿老婆');
 
 -- ----------------------------
 -- Table structure for client
@@ -36,22 +42,28 @@ CREATE TABLE `agency`  (
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE `client`  (
   `cno` int(0) NOT NULL AUTO_INCREMENT,
-  `cname` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `csex` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `cage` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `caddress` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `cphone` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `csymptom` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
+  `cname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `csex` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `cage` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `caddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `cphone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `csymptom` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `mno` int(0) NULL DEFAULT NULL,
   `ano` int(0) NULL DEFAULT NULL,
-  `cdate` datetime(6) NULL DEFAULT NULL,
-  `cremark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
+  `cdate` varbinary(255) NULL DEFAULT NULL,
+  `cremark` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   PRIMARY KEY (`cno`) USING BTREE,
   INDEX `ano`(`ano`) USING BTREE,
   INDEX `mno`(`mno`) USING BTREE,
   CONSTRAINT `ano` FOREIGN KEY (`ano`) REFERENCES `agency` (`ano`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `mno` FOREIGN KEY (`mno`) REFERENCES `medicine` (`mno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of client
+-- ----------------------------
+INSERT INTO `client` VALUES (2, '哈哈哈', '男', '66', '666', '11122223333', '流鼻涕', 5, 2, 0x323032342D31302D33312031333A3530, '777');
+INSERT INTO `client` VALUES (4, '牛噢', '男', '88', '奋斗户外', '1133334444', '死了', 9, 1, 0x323032342D31302D32392031363A3435, '');
 
 -- ----------------------------
 -- Table structure for medicine
@@ -59,18 +71,21 @@ CREATE TABLE `client`  (
 DROP TABLE IF EXISTS `medicine`;
 CREATE TABLE `medicine`  (
   `mno` int(0) NOT NULL AUTO_INCREMENT,
-  `mname` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `mmode` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
-  `mefficacy` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL,
+  `mname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `mmode` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `mefficacy` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   PRIMARY KEY (`mno`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of medicine
 -- ----------------------------
-INSERT INTO `medicine` VALUES (1, '1', '1', '1');
-INSERT INTO `medicine` VALUES (3, '1', '1', '1');
-INSERT INTO `medicine` VALUES (4, '2', '2', '2');
+INSERT INTO `medicine` VALUES (1, '热辣豚骨汤面', '内服', '获得饱腹效果');
+INSERT INTO `medicine` VALUES (5, '智弘膏', '内服', '治疗不孕不育');
+INSERT INTO `medicine` VALUES (6, '祖威喷雾', '外用', '治疗靡烂溃疡');
+INSERT INTO `medicine` VALUES (7, '会权胶囊', '内服', '治疗肠胃出血');
+INSERT INTO `medicine` VALUES (8, '柏杨丸', '内服', '治疗心绪不定');
+INSERT INTO `medicine` VALUES (9, '钿粉剂', '内服', '治疗食势失明');
 
 -- ----------------------------
 -- Table structure for user
@@ -107,7 +122,7 @@ INSERT INTO `user` VALUES (140, '131', '131', NULL, NULL, NULL, NULL, NULL, '管
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `remove_underscores_from_columns`;
 delimiter ;;
-CREATE PROCEDURE `remove_underscores_from_columns`(IN zqudatacollectordb VARCHAR(255))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `remove_underscores_from_columns`(IN zqudatacollectordb VARCHAR(255))
 BEGIN
     DECLARE done INT DEFAULT FALSE;
     DECLARE current_table VARCHAR(255);

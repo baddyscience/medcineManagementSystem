@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Setter;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.time.LocalDateTime;
 
 @Data
 @TableName("client")  // 表名

@@ -4,6 +4,7 @@ package com.medicine.springboot.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.medicine.springboot.common.Result;
 import com.medicine.springboot.entity.Agency;
+import com.medicine.springboot.entity.Medicine;
 import com.medicine.springboot.service.AgencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -74,5 +75,39 @@ public class AgencyController {
             agencyService.updateById(agency);
         }
         return Result.success("经办人编号重新排序成功");
+    }
+
+    @GetMapping("/search")
+    public Result searchMedicines(
+            @RequestParam(required = false) String ano,
+            @RequestParam(required = false) String aname,
+            @RequestParam(required = false) String asex,
+            @RequestParam(required = false) String aphone,
+            @RequestParam(required = false) String aremark) throws SQLException {
+
+        QueryWrapper<Agency> queryWrapper = new QueryWrapper<>();
+
+        // 根据传入的参数添加查询条件
+        if (ano != null && !ano.isEmpty()) {
+            queryWrapper.eq("ano", ano);
+        }
+        if (aname != null && !aname.isEmpty()) {
+            queryWrapper.like("aname", aname); // 使用like匹配名称
+        }
+        if (asex != null && !asex.isEmpty()) {
+            queryWrapper.eq("asex", asex);
+        }
+        if (aphone != null && !aphone.isEmpty()) {
+            queryWrapper.like("aphone", aphone); // 使用like匹配功效
+        }
+        if (aremark != null && !aremark.isEmpty()) {
+            queryWrapper.like("aremark", aremark); // 使用like匹配功效
+        }
+
+        // 根据构建的条件查询药品
+        List<Agency> agencys = agencyService.list(queryWrapper);
+
+        // 返回结果
+        return Result.success(agencys);
     }
 }
