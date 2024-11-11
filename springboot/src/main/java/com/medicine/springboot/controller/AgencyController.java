@@ -9,7 +9,7 @@ import com.medicine.springboot.service.AgencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.baomidou.dynamic.datasource.annotation.DS;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -18,39 +18,46 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 @RequestMapping("/agency")
+@DS("medicine")
 public class AgencyController {
 
     @Autowired
     AgencyService agencyService;
 
     @RequestMapping("/getByAno")
+    @DS("medicine")
     public Object getByAno(Integer ano)
     {
         return agencyService.getByAno(ano);
     }
     @GetMapping("/find")
+    @DS("medicine")
     public Result getAllUser() throws SQLException {
         List<Agency> agencys = agencyService.list(new QueryWrapper<Agency>().orderByDesc("ano"));
         return Result.success(agencys);
     }
 
     @PostMapping("/save")
+    @DS("medicine")
     public boolean addAgency(@RequestBody Agency agency) {
         return agencyService.save(agency);
     }
 
     @PutMapping("/update/{ano}")
+    @DS("medicine")
     public Agency updateagency(@PathVariable Integer ano, @RequestBody Agency agency) {
         agency.setAno(ano);
         return agencyService.update(agency);
     }
 
     @DeleteMapping("/delete/{ano}")
+    @DS("medicine")
     public void deleteagency(@PathVariable Integer ano) {
         agencyService.delete(ano);
     }
 
     @DeleteMapping("/deleteBatch")
+    @DS("medicine")
     public ResponseEntity<?> deleteBatch(@RequestBody List<Integer> anos) {
         // 批量删除逻辑
         for (Integer ano : anos) {
@@ -65,6 +72,7 @@ public class AgencyController {
     }
 
     @PutMapping("/reorder")
+    @DS("medicine")
     public Result reorderagencys(@RequestBody List<Agency> agencys) throws SQLException {
         // 遍历药品列表并更新药品编号
         for (int i = 0; i < agencys.size(); i++) {
@@ -78,6 +86,7 @@ public class AgencyController {
     }
 
     @GetMapping("/search")
+    @DS("medicine")
     public Result searchMedicines(
             @RequestParam(required = false) String ano,
             @RequestParam(required = false) String aname,

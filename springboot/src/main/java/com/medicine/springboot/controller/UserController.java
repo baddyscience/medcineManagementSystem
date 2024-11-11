@@ -1,6 +1,7 @@
 package com.medicine.springboot.controller;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -17,6 +18,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
+@DS("user")
 public class UserController {
 
     @Autowired

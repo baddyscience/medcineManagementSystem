@@ -1,13 +1,29 @@
 spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://${ip}:3306/medicine
+#    username: root
+#    password:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${ip}:3306/medicine
-    username: root
-    password:
+    dynamic:
+      primary: medicine  # 设置默认的数据源，默认使用第一个数据库
+      strict: false # 严格匹配数据源，false 表示未匹配到指定数据源时使用默认数据源
+      datasource:
+        medicine:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://${ip}:3306/medicine
+          username: root
+          password:
+        user:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://${ip}:3306/user
+          username: root
+          password:
   servlet:
     multipart:
       max-request-size: 100MB
       max-file-size: 100MB
+
 
 server:
   port: 5000

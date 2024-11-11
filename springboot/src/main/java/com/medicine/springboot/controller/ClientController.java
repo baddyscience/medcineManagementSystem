@@ -1,5 +1,6 @@
 package com.medicine.springboot.controller;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.medicine.springboot.common.Result;
 import com.medicine.springboot.entity.Client;
@@ -17,6 +18,7 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 @RequestMapping("/client")
+@DS("medicine")
 public class ClientController {
 
     @Autowired
