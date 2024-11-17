@@ -48,7 +48,7 @@
 
       <el-button type="primary" @click="dialogVisible = true" style="margin-bottom: 20px;">添加经办</el-button>
       <!--
-      <el-button @click="reorderclient" style="margin-bottom: 20px; margin-left: 10px;">重新排序</el-button> <!-- 添加重新排序按钮 -->
+      <el-button @click="reorderclient" style="margin-bottom: 20px; margin-left: 10px;">重新排序</el-button> 添加重新排序按钮 -->
       <el-button @click="deleteSelectedClients" style="margin-bottom: 20px;" :disabled="multipleSelection.length === 0">批量删除</el-button><!-- 多选框列 -->
       <el-button @click="exportToPDF" style="margin-bottom: 20px; margin-left: 10px;">保存数据</el-button>
       <el-table :data="clients" ref="multipleTable" @selection-change="handleSelectionChange" style="width: 100%; height: calc(100vh - 200px); margin-top: 20px;" stripe>

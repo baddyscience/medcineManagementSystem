@@ -16,7 +16,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="user@localhost" uuid="fef9db0f-266a-4b11-9a9d-a368cb73f968">
+    <data-source source="LOCAL" name="user@localhost" uuid="98e3716c-55c8-452e-b337-202e6af8df26">
       <driver-ref>mysql_aurora_aws</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>software.aws.rds.jdbc.mysql.Driver</jdbc-driver>

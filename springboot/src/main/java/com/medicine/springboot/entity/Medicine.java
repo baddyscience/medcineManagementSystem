@@ -18,7 +18,4 @@ public class Medicine {
     public String mmode;
     public String mefficacy;
 
-    public void setMno(Integer mno) {
-        this.mno = mno;
-    }
 }
